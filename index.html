@@ -278,8 +278,64 @@
       position: absolute;
       top: -38px;
       right: 10px;
-      z-index: 10;
+      z-index: 20;
       white-space: nowrap;
+      overflow: visible; /* ensure full border visible */
+    }
+
+    /* rope divider between sections */
+    .rope-divider {
+      width: 100%;
+      height: 12px;
+      position: relative;
+      z-index: 10;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 4px,
+          rgba(0,0,0,0.08) 4px,
+          rgba(0,0,0,0.08) 5px
+        );
+      overflow: visible;
+    }
+    .rope-divider::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 0;
+      right: 0;
+      height: 8px;
+      border-radius: 4px;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          #c9a96e 0px,
+          #d4b87a 3px,
+          #b8944f 6px,
+          #c9a96e 9px
+        );
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    /* per-section color variations */
+    .hero + .rope-divider::before {
+      background: repeating-linear-gradient(135deg, #e8a0b5 0px, #f0c4d0 3px, #d4869e 6px, #e8a0b5 9px);
+    }
+    .about-section + .rope-divider::before {
+      background: repeating-linear-gradient(135deg, #7ec89a 0px, #a0d8b0 3px, #60b880 6px, #7ec89a 9px);
+    }
+    .academic-section + .rope-divider::before {
+      background: repeating-linear-gradient(135deg, #e8c84a 0px, #f0d878 3px, #d0b030 6px, #e8c84a 9px);
+    }
+    .interest-section + .rope-divider::before {
+      background: repeating-linear-gradient(135deg, #88b8e0 0px, #a8d0f0 3px, #6898c0 6px, #88b8e0 9px);
+    }
+    .skills-section + .rope-divider::before {
+      background: repeating-linear-gradient(135deg, #c8a0d8 0px, #d8b8e8 3px, #b888c8 6px, #c8a0d8 9px);
+    }
+    .contact-section + .rope-divider::before {
+      background: repeating-linear-gradient(135deg, #e8a0b5 0px, #f0c4d0 3px, #d4869e 6px, #e8a0b5 9px);
     }
 
     /* ── ABOUT ───────────────────────────────────────────────── */
@@ -789,6 +845,7 @@
   </div>
 
 </section>
+<div class="rope-divider"></div>
 
 <!-- ── ABOUT ─────────────────────────────────────────────────── -->
 <section class="about-section" id="about">
@@ -867,6 +924,7 @@
     </div>
   </div>
 </section>
+<div class="rope-divider"></div>
 
 <!-- ── ACADEMIC JOURNEY ───────────────────────────────────────── -->
 <section class="academic-section" id="perjalanan">
@@ -931,6 +989,7 @@
 
   </div>
 </section>
+<div class="rope-divider"></div>
 
 <!-- ── AREAS OF INTEREST ──────────────────────────────────────── -->
 <section class="interest-section" id="minat">
@@ -988,6 +1047,7 @@
     </div>
   </div>
 </section>
+<div class="rope-divider"></div>
 
 <!-- ── SKILLS ─────────────────────────────────────────────────── -->
 <section class="skills-section" id="kemampuan">
@@ -1048,6 +1108,7 @@
     </div>
   </div>
 </section>
+<div class="rope-divider"></div>
 
 <!-- ── CONTACT ────────────────────────────────────────────────── -->
 <section class="contact-section" id="kontak">
@@ -1095,6 +1156,7 @@
 
   </div>
 </section>
+<div class="rope-divider"></div>
 
 <!-- ── FOOTER ─────────────────────────────────────────────────── -->
 <footer class="site-footer">
