@@ -1,0 +1,120 @@
+/* ============================================================
+   motion.css — lapisan animasi tipis untuk tema scrawl
+   Konsep: elemen "ditempel" ke halaman (polaroid jatuh, tape
+   menempel, sticky note mendarat), bukan fade-slide generik.
+
+   Catatan teknis:
+   - Memakai properti individual `translate`, `rotate`, `scale`
+     supaya tidak menimpa `transform: rotate(...)` bawaan desain.
+   - Tidak pernah menganimasikan `filter` (filter wobble SVG berat).
+   - Semua gerak dibungkus prefers-reduced-motion: no-preference.
+   ============================================================ */
+
+/* ── State navigasi (bukan gerak, selalu aktif) ───────────── */
+.site-nav.is-scrolled { box-shadow: 0 3px 0 rgba(26, 21, 18, 0.07); }
+.nav-links a.is-active {
+  text-decoration: underline wavy currentColor 2px;
+  text-underline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+  :root {
+    --nj-ease: cubic-bezier(0.22, 0.8, 0.3, 1);
+    --nj-pop:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* ── Keyframes ──────────────────────────────────────────── */
+  @keyframes nj-rise {
+    from { opacity: 0; translate: 0 14px; }
+    to   { opacity: 1; translate: 0 0; }
+  }
+  @keyframes nj-drop {
+    from { opacity: 0; translate: 0 -28px; rotate: -5deg; scale: 1.04; }
+    to   { opacity: 1; translate: 0 0;     rotate: 0deg;  scale: 1; }
+  }
+  @keyframes nj-stick {
+    from { opacity: 0; scale: 1.25; }
+    to   { opacity: 1; scale: 1; }
+  }
+  @keyframes nj-pop {
+    from { opacity: 0; scale: 0.6; }
+    to   { opacity: 1; scale: 1; }
+  }
+  @keyframes nj-bob {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -4px; }
+  }
+
+  /* ── HERO: satu momen utama saat halaman dibuka ─────────── */
+  /* fill-mode `backwards` → setelah selesai elemen kembali ke
+     gaya aslinya, jadi hover tetap bisa bekerja. */
+  .nav-logo        { animation: nj-rise 0.6s var(--nj-ease) 0s    backwards; }
+  .hero-kicker     { animation: nj-rise 0.7s var(--nj-ease) 0.10s backwards; }
+  .hero-name       { animation: nj-rise 0.8s var(--nj-ease) 0.20s backwards; }
+  .hero-role       { animation: nj-rise 0.7s var(--nj-ease) 0.32s backwards; }
+  .hero-desc       { animation: nj-rise 0.7s var(--nj-ease) 0.42s backwards; }
+  .hero-cta        { animation: nj-rise 0.7s var(--nj-ease) 0.52s backwards; }
+  .hero-badges     { animation: nj-rise 0.7s var(--nj-ease) 0.62s backwards; }
+
+  .hp-main         { animation: nj-drop 0.9s var(--nj-ease) 0.25s backwards; }
+  .hp-accent       { animation: nj-drop 0.9s var(--nj-ease) 0.50s backwards; }
+  .pol-tape        { animation: nj-stick 0.35s var(--nj-ease) 1.0s backwards; }
+
+  .hero-deco-1     { animation: nj-pop 0.5s var(--nj-pop) 0.90s backwards; }
+  .hero-deco-2     { animation: nj-pop 0.5s var(--nj-pop) 1.00s backwards; }
+  .hero-deco-3     { animation: nj-pop 0.5s var(--nj-pop) 1.15s backwards;
+                     transform-origin: 15% 100%; }
+
+  /* ── Idle: stiker mengambang sangat pelan ───────────────── */
+  [data-sticker]   { animation: nj-bob 6s ease-in-out infinite;
+                     animation-delay: var(--bd, 0s); }
+  .contact-star    { animation: nj-bob 7s ease-in-out infinite; }
+
+  /* ── Hover: tempelan terangkat sedikit ──────────────────── */
+  .hp {
+    transition: translate 0.35s var(--nj-ease),
+                rotate 0.35s var(--nj-ease),
+                box-shadow 0.35s var(--nj-ease);
+  }
+  .hp:hover {
+    translate: 0 -6px;
+    rotate: 0.8deg;
+    box-shadow: 7px 12px 28px rgba(0, 0, 0, 0.22);
+  }
+
+  .sw-index-card,
+  .stat-sticky {
+    transition: translate 0.3s var(--nj-ease), rotate 0.3s var(--nj-ease);
+  }
+  .sw-index-card:hover { translate: 0 -4px; }
+  .stat-sticky:hover   { translate: 0 -3px; rotate: -1.2deg; }
+
+  .sw-badge {
+    transition: translate 0.2s var(--nj-ease), rotate 0.2s var(--nj-ease);
+  }
+  .sw-badge:hover { translate: 0 -2px; rotate: -1.5deg; }
+
+  /* ── SCROLL: elemen "ditempel" saat masuk layar ─────────── */
+  /* Kelas .rv ditambahkan oleh motion.js hanya jika gerak diizinkan,
+     lalu dilepas lagi setelah selesai agar hover bebas. */
+  .rv {
+    opacity: 0;
+    translate: 0 14px;
+    transition: opacity 0.65s var(--nj-ease),
+                translate 0.65s var(--nj-ease),
+                rotate 0.65s var(--nj-ease),
+                scale 0.65s var(--nj-ease);
+  }
+  .rv-paste { translate: 0 12px; rotate: -2deg; scale: 0.97; }  /* sticky note mendarat */
+  .rv-stick { translate: 0 0;    scale: 1.18; }                 /* tape ditekan */
+  .rv-pop   { translate: 0 0;    scale: 0.88; }                 /* starburst muncul */
+  .rv-stick, .rv-pop { transition-timing-function: var(--nj-pop); }
+
+  .rv.rv-in {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
