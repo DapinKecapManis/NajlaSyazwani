@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Najla Syazwani — Mahasiswa Psikologi UPI</title>
+  <link rel="stylesheet" href="scrawl.css">
+  <style>html{background:#fef8ee}</style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; width: 100%; }
+    ::-webkit-scrollbar { display: none; }
+    * { scrollbar-width: none; }
+
+    :root {
+      --page-ink: #1a1512;
+      --page-bg: #fef8ee;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--page-bg);
+      color: var(--page-ink);
+      font-family: 'Patrick Hand', cursive;
+      overflow-x: hidden;
+    }
+
+    /* ── GLOBAL LAYOUT ─────────────────────────────────────── */
+    .container {
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── AVAILABILITY DOT ───────────────────────────────────── */
+    @keyframes pulse {
+      0%,100% { transform:scale(1); opacity:1; }
+      50%      { transform:scale(1.5); opacity:.6; }
+    }
+    .dot-live {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #4caf50;
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(254,248,238,0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 2.5px solid var(--page-ink);
+      filter: url(#sw-f1);
+    }
+    .nav-inner {
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Bangers', cursive;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      color: var(--page-ink);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--page-ink);
+      text-decoration: none;
+    }
+    .nav-links a:hover { text-decoration: underline wavy currentColor 2px; }
+    .nav-avail {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Caveat', cursive;
+      font-size: 0.95rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    /* hamburger — mobile only */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2.5px;
+      background: var(--page-ink);
+      border-radius: 2px;
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero {
+      height: auto;
+      min-height: 100vh;
+      padding: 80px 0 0;
+      background: linear-gradient(150deg, #ffd6e0 0%, #fff9c4 55%, #d8f3d8 100%);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-inner {
+      width: 100%;
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: clamp(1rem, 3vw, 2.5rem) clamp(1rem, 4vw, 3rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      min-height: calc(100vh - 80px);
+      box-sizing: border-box;
+    }
+
+    /* left col */
+    .hero-left { padding-bottom: 0; }
+
+    .hero-kicker {
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #d03060;
+      margin-bottom: 0.4rem;
+      filter: url(#sw-f1);
+    }
+    .hero-name {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.03em;
+      color: var(--page-ink);
+      -webkit-text-stroke: 0.02em var(--page-ink);
+      paint-order: stroke fill;
+      filter: url(#sw-f2);
+      margin-bottom: 0.6rem;
+    }
+    .hero-role {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 600;
+      color: #5a5248;
+      filter: url(#sw-f1);
+      margin-bottom: 0.8rem;
+    }
+    .hero-desc {
+      font-size: clamp(0.88rem, 1.2vw, 1rem);
+      line-height: 1.6;
+      color: #4a4540;
+      max-width: 420px;
+      margin-bottom: 1.2rem;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .hero-avail-strip {
+      margin-top: 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Caveat', cursive;
+      font-size: 0.98rem;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+      border: 2px solid var(--page-ink);
+      filter: url(#sw-f1);
+      background: rgba(255,255,255,0.6);
+    }
+
+    /* right col — polaroid cluster */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .hero-polaroid-group {
+      position: relative;
+      width: 380px;
+      height: 480px;
+    }
+    .hp { position: absolute; }
+    /* main portrait polaroid */
+    .hp-main {
+      left: 40px; bottom: 0;
+      width: 260px;
+      background: #fff;
+      padding: 10px 10px 48px;
+      box-shadow: 5px 8px 24px rgba(0,0,0,0.18);
+      transform: rotate(-1.5deg);
+      filter: url(#sw-f1);
+    }
+    .hp-main .pp {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(145deg, #ffd6e0 0%, #fff9c4 40%, #d6ecff 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* top-right accent polaroid */
+    .hp-accent {
+      right: 0; top: 20px;
+      width: 170px;
+      background: #fff;
+      padding: 8px 8px 36px;
+      box-shadow: 4px 6px 16px rgba(0,0,0,0.15);
+      transform: rotate(3.5deg);
+      filter: url(#sw-f1);
+    }
+    .hp-accent .pp {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, #d8f3d8 0%, #fff9c4 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* tape on polaroids */
+    .pol-tape {
+      position: absolute;
+      width: 70px; height: 22px;
+      filter: url(#sw-f1);
+      pointer-events: none;
+    }
+    .pol-tape-tl { top: -8px; left: -10px; transform: rotate(-8deg); background: rgba(247,201,72,0.55); border-top: 1px solid rgba(180,140,0,.22); border-bottom: 1px solid rgba(180,140,0,.22); }
+    .pol-tape-tr { top: -8px; right: -10px; transform: rotate(7deg);  background: rgba(240,98,146,0.42); border-top: 1px solid rgba(180,50,90,.2); border-bottom: 1px solid rgba(180,50,90,.2); }
+    .pol-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Caveat', cursive;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #2a2520;
+    }
+
+    /* decorative elements anchored relative to hero */
+    .hero-deco-1 { position: absolute; top: 6rem; right: 1rem; }
+    .hero-deco-2 { position: absolute; bottom: 4rem; left: 1rem; }
+    .hero-deco-3 {
+      position: absolute;
+      top: -38px;
+      right: 10px;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    /* ── ABOUT ───────────────────────────────────────────────── */
+    .about-section {
+      background: linear-gradient(160deg, #d8f3d8 0%, #d6ecff 100%);
+      padding: 0 0 5rem;
+      position: relative;
+    }
+    .about-inner {
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 5rem 1.5rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    /* notebook left */
+    .about-notebook {
+      background: #fafef7;
+      background-image:
+        linear-gradient(90deg, transparent 3rem, rgba(231,76,60,.3) 3rem, rgba(231,76,60,.3) calc(3rem + 1.5px), transparent calc(3rem + 1.5px)),
+        repeating-linear-gradient(transparent, transparent 1.75rem, rgba(59,130,246,.16) 1.75rem, rgba(59,130,246,.16) calc(1.75rem + 1px));
+      padding: 1.2rem 1.4rem 1.4rem 4rem;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.05rem;
+      line-height: 1.75rem;
+      border: 2px solid #dde0e4;
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .about-notebook p + p { margin-top: 1.75rem; }
+    .nb-date {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #d03060;
+      margin-bottom: 0.3rem;
+    }
+
+    /* sticky stats */
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .stat-sticky {
+      background: #fff9c4;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 2px 3px 8px rgba(0,0,0,0.12);
+      filter: url(#sw-f1);
+    }
+    .stat-sticky::before { content:''; position:absolute; top:0;left:0;right:0; height:5px; background:rgba(0,0,0,0.07); }
+    .stat-num {
+      font-family: 'Bangers', cursive;
+      font-size: 3rem;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      color: var(--page-ink);
+    }
+    .stat-label { font-family: 'Caveat', cursive; font-size: 0.9rem; font-weight: 700; color: #5a5248; margin-top: 0.1rem; }
+
+    .about-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+
+    /* ── ACADEMIC JOURNEY ────────────────────────────────────── */
+    .academic-section {
+      padding: 5rem 0;
+      background: var(--page-bg);
+      background-image: radial-gradient(circle, rgba(90,82,72,0.1) 1px, transparent 1px);
+      background-size: 26px 26px;
+      position: relative;
+    }
+    .academic-inner {
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .academic-sticky {
+      position: sticky;
+      top: 80px;
+    }
+    .academic-receipt {
+      max-width: 340px;
+    }
+    .receipt-step {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #ccc;
+    }
+    .receipt-step:last-of-type { border-bottom: none; }
+    .receipt-step-num {
+      font-weight: bold;
+      font-size: 1rem;
+      min-width: 1.5rem;
+    }
+    .receipt-step-name { flex: 1; }
+    .receipt-step-tag {
+      font-size: 0.75rem;
+      opacity: 0.55;
+      white-space: nowrap;
+    }
+    .academic-detail {
+      padding: 1.2rem 0;
+      border-bottom: 2px dashed rgba(42,37,32,0.15);
+    }
+    .academic-detail:last-child { border-bottom: none; }
+    .ad-step {
+      font-family: 'Bangers', cursive;
+      font-size: 4rem;
+      line-height: 1;
+      opacity: 0.1;
+      float: left;
+      margin-right: 1rem;
+      margin-top: -0.2rem;
+      filter: url(#sw-f1);
+    }
+    .ad-title {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+      filter: url(#sw-f1);
+    }
+    .ad-text { font-size: 1rem; line-height: 1.7; color: #5a5248; }
+
+    /* ── AREAS OF INTEREST ───────────────────────────────────── */
+    .interest-section {
+      background: linear-gradient(135deg, #ffd6e0 0%, #fce4ed 50%, #fff9c4 100%);
+      padding: 0 0 5rem;
+      position: relative;
+    }
+    .interest-inner {
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 5rem 1.5rem 0;
+    }
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .interest-index {
+      position: relative;
+    }
+    /* washi tape across each card top */
+    .interest-washi {
+      display: block;
+      height: 1.8rem;
+      width: calc(100% + 16px);
+      margin: 0 -8px;
+      filter: url(#sw-f1);
+      pointer-events: none;
+      border-top: 1.5px solid rgba(0,0,0,0.12);
+      border-bottom: 1.5px solid rgba(0,0,0,0.12);
+    }
+    .interest-name {
+      font-family: 'Bangers', cursive;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      margin: 0.8rem 0 0.5rem;
+      filter: url(#sw-f1);
+    }
+    .interest-desc {
+      font-size: 0.98rem;
+      color: #4a4540;
+      line-height: 1.65;
+      margin-top: 0.4rem;
+    }
+
+    /* ── SKILLS ──────────────────────────────────────────────── */
+    .skills-section {
+      padding: 5rem 0;
+      background: var(--page-bg);
+      position: relative;
+    }
+    .skills-inner {
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .skills-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .skill-col-title {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      filter: url(#sw-f1);
+    }
+    .skill-list {
+      list-style: none;
+      font-size: 0.98rem;
+      color: #4a4540;
+    }
+    .skill-list li {
+      padding: 0.28rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .skill-list li::before {
+      content: '→';
+      color: #d03060;
+      font-family: 'Permanent Marker', cursive;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ──────────────────────────────────────────────── */
+    .contact-section {
+      padding: 5rem 0 6rem;
+      background: linear-gradient(135deg, #d6ecff 0%, #ede6f7 55%, #ffd6e0 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .contact-star {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bangers', cursive;
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+    .contact-title {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      letter-spacing: 0.04em;
+      line-height: 0.9;
+      filter: url(#sw-f2);
+      margin-bottom: 1rem;
+    }
+    .contact-sub {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #4a4540;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+    .social-links { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--page-ink);
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border: 2px solid var(--page-ink);
+      filter: url(#sw-f1);
+      background: rgba(255,255,255,0.5);
+    }
+    .social-link:hover { background: rgba(255,255,255,0.85); }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    .site-footer {
+      background: var(--page-ink);
+      color: #fef8ee;
+      padding: 3rem 2rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 0.95rem;
+    }
+    .site-footer a { color: #fef8ee; text-decoration: none; opacity: 0.8; }
+    .site-footer a:hover { opacity: 1; }
+    .footer-brand { }
+    .footer-brand-name {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.3rem;
+      color: #fff;
+      text-decoration: underline;
+      text-decoration-color: var(--sw-pink);
+      text-underline-offset: 4px;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .footer-brand p { opacity: 0.75; font-size: 0.88rem; line-height: 1.5; margin: 0; }
+    .footer-col-title {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 0.06em;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    @media(max-width:600px){
+      .site-footer { grid-template-columns: 1fr; }
+    }
+
+    /* ── SECTION TITLES (shared) ──────────────────────────────── */
+    .section-eyebrow {
+      display: inline-block;
+      font-family: 'Caveat', cursive;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      opacity: 0.65;
+    }
+    .section-heading {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      filter: url(#sw-f2);
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: #5a5248;
+    }
+
+    /* ── SETIAP PAGE MINIMAL SATU LAYAR PENUH ─────────────────── */
+    .hero, .about-section, .academic-section, .interest-section,
+    .skills-section, .contact-section {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    .about-section, .academic-section, .interest-section,
+    .skills-section, .contact-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .about-inner, .academic-inner, .interest-inner, .skills-inner { width: 100%; }
+
+    /* ── MOBILE ───────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      /* hero: tampilan awal layar penuh khusus polaroid/foto saja */
+      .hero             { height: auto; min-height: 100vh; min-height: 100dvh; padding-top: 56px; }
+      .hero-inner       { display: flex; flex-direction: column; align-items: center;
+                          justify-content: flex-start; height: auto; min-height: calc(100vh - 56px);
+                          min-height: calc(100dvh - 56px); padding: 0 1.2rem 2.5rem; gap: 0; }
+      .hero-right       { display: flex; order: 1; justify-content: center; align-items: center; width: 100%;
+                          min-height: calc(100vh - 56px); min-height: calc(100dvh - 56px);
+                          flex-shrink: 0; }
+      .hero-left        { order: 2; width: 100%; text-align: center; flex-shrink: 0; padding-top: 2rem; }
+      .hero-badges      { justify-content: center; }
+      .hero-cta         { justify-content: center; }
+      /* speech bubble nempel di atas polaroid kanan (hp-accent) */
+      .hero-deco-3      { top: -40px; right: 5px; }
+      .hero-desc        { display: none; }
+      .hero-badges      { display: none; }
+      .about-inner      { grid-template-columns: 1fr; }
+      .academic-inner   { grid-template-columns: 1fr; }
+      .academic-sticky  { position: static; }
+      .interest-grid    { grid-template-columns: 1fr; max-width: 420px; }
+      .skills-grid      { grid-template-columns: 1fr; }
+      .contact-inner    { grid-template-columns: 1fr; }
+      .contact-star     { display: none; }
+      .nav-links, .nav-avail { display: none; }
+      .nav-toggle       { display: flex; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-name        { font-size: clamp(2.2rem, 10vw, 3.5rem); line-height: 0.95; margin-bottom: 0.4rem; }
+      .hero-role        { font-size: 1rem; margin-bottom: 0.6rem; }
+      .hero-cta         { margin-bottom: 0; }
+      .section-heading  { font-size: 2.8rem; }
+      .interest-grid    { max-width: 100%; }
+      .hero-polaroid-group { transform: scale(0.78); transform-origin: center center; margin: 0; }
+    }
+
+    /* mobile nav open state */
+    body.nav-open .nav-links,
+    body.nav-open .nav-avail  { display: flex; }
+    body.nav-open .site-nav .nav-inner { flex-wrap: wrap; height: auto; padding: 0.8rem 1.5rem; gap: 0.8rem; }
+    body.nav-open .nav-links { flex-direction: column; width: 100%; gap: 0.6rem; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">najla.</a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#perjalanan">perjalanan</a></li>
+      <li><a href="#minat">minat</a></li>
+      <li><a href="#kemampuan">kemampuan</a></li>
+      <li><a href="#kontak">kontak</a></li>
+    </ul>
+    <div class="nav-avail">
+      <span class="dot-live"></span>
+      Active
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="hero">
+
+  <!-- corner sticker decorations -->
+  <div class="hero-deco-1">
+    <div data-sticker="sparkles" data-color="var(--sw-yellow)" data-size="56px" style="transform:rotate(12deg)"></div>
+  </div>
+  <div class="hero-deco-2">
+    <div data-sticker="burst" data-color="var(--sw-pink)" data-size="64px" style="transform:rotate(-8deg)"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-kicker">halo, saya</div>
+
+      <h1 class="hero-name">Najla<br>Syazwani</h1>
+
+      <p class="hero-role">Mahasiswa Psikologi — Universitas Pendidikan Indonesia</p>
+
+      <p class="hero-desc">
+        Perkenalkan, saya Najla Syazwani, mahasiswa Program Studi Psikologi
+        Universitas Pendidikan Indonesia. Saya senang mendengarkan cerita orang
+        lain dan memiliki ketertarikan untuk mempelajari hal-hal baru.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#about" class="sw-btn sw-btn-filled sw-btn-lg">tentang saya</a>
+        <a href="#kontak" class="sw-btn sw-btn-lg">hubungi saya</a>
+      </div>
+
+      <div class="hero-badges">
+        <span class="sw-badge sw-color-pink">Psikologi Klinis</span>
+        <span class="sw-badge sw-color-yellow">Psikologi Sosial</span>
+        <span class="sw-badge sw-color-green">Psikologi Perkembangan</span>
+        <span class="sw-badge sw-color-blue">Bahasa Inggris</span>
+      </div>
+
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-polaroid-group">
+
+        <!-- main polaroid — no photo, just decorative fill -->
+        <div class="hp hp-main">
+          <div class="pol-tape pol-tape-tl"></div>
+          <div class="pol-tape pol-tape-tr"></div>
+          <div class="pp">
+            <div style="text-align:center">
+              <div data-sticker="flower" data-color="var(--sw-pink)" data-size="80px" style="margin:0 auto 8px"></div>
+              <div style="font-family:'Bangers',cursive;font-size:1.3rem;letter-spacing:0.04em">najla ✦</div>
+            </div>
+          </div>
+          <div class="pol-label" style="font-family:'Caveat',cursive;font-size:0.95rem;font-weight:700;height:48px">
+            Cianjur, Jawa Barat
+          </div>
+        </div>
+
+        <!-- accent polaroid top-right -->
+        <div class="hp hp-accent">
+          <div class="pp">
+            <div data-sticker="star" data-color="var(--sw-yellow)" data-size="52px"></div>
+          </div>
+          <div class="pol-label" style="font-family:'Caveat',cursive;font-size:0.85rem;font-weight:700;height:36px">
+            psikologi UPI
+          </div>
+        </div>
+
+        <!-- speech bubble menempel persis di atas polaroid kanan -->
+        <div class="hero-deco-3">
+          <span class="sw-speech-bubble sw-speech-bubble-yellow" style="font-family:'Caveat',cursive;font-size:0.95rem;font-weight:700;white-space:nowrap">
+            mahasiswa aktif! ✦
+          </span>
+        </div>
+
+        <!-- arc text label below cluster -->
+        <div style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%)">
+          <span
+            data-arc-text="psikologi · UPI · 2026 ✦"
+            data-arc-radius="130"
+            data-arc-size="13px"
+            data-arc-font="'Caveat', cursive"
+            data-arc-color="#d03060"
+            style="filter:url(#sw-f1)">psikologi · UPI · 2026 ✦</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────────────────── -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+
+    <!-- left: spiral-bound notebook -->
+    <div>
+      <div class="sw-tape-strip sw-tape-strip-green" style="transform:rotate(-1deg);margin-bottom:0.8rem">tentang saya</div>
+
+      <div class="sw-spiral-binding about-notebook sw-shadow" style="padding-top:3.5rem">
+        <div class="nb-date">2026 — Catatan Perkuliahan</div>
+        <p>
+          Perkenalkan, saya Najla Syazwani, mahasiswa Program Studi Psikologi
+          Universitas Pendidikan Indonesia. Saya merupakan pribadi yang cenderung
+          introvert, senang mendengarkan cerita orang lain, dan memiliki ketertarikan
+          untuk mempelajari hal-hal baru.
+        </p>
+        <p>
+          Saya juga memiliki minat dalam mempelajari bahasa asing, khususnya bahasa
+          Inggris. Saat ini, saya sedang berusaha mengembangkan diri, meningkatkan
+          rasa percaya diri, serta memperluas pengalaman dan pengetahuan melalui
+          perjalanan perkuliahan.
+        </p>
+        <p>
+          Saya memilih Psikologi karena memiliki ketertarikan untuk memahami manusia
+          — cara berpikir, merasakan, hingga berperilaku. Mempelajari Psikologi bukan
+          hanya membantu saya memahami orang lain, tetapi juga mengenali diri sendiri.
+        </p>
+      </div>
+
+      <div class="about-tags" style="margin-top:1.2rem">
+        <span class="sw-badge sw-color-yellow">📍 Cianjur, Jawa Barat</span>
+        <span class="sw-badge sw-color-pink">✦ introvert</span>
+        <span class="sw-badge sw-color-blue">🌐 bahasa inggris</span>
+        <span class="sw-badge sw-color-green">✦ active listener</span>
+      </div>
+    </div>
+
+    <!-- right: stats on sticky notes + tujuan -->
+    <div>
+      <div class="sw-tape-strip" style="transform:rotate(1deg);margin-bottom:0.8rem">tujuan &amp; cita-cita</div>
+
+      <div class="about-stats">
+        <div class="stat-sticky">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">tahun masuk UPI</div>
+        </div>
+        <div class="stat-sticky sw-sticky-pink">
+          <div class="stat-num">S.Psi</div>
+          <div class="stat-label">gelar yang dituju</div>
+        </div>
+        <div class="stat-sticky sw-sticky-blue">
+          <div class="stat-num">3</div>
+          <div class="stat-label">bidang minat</div>
+        </div>
+        <div class="stat-sticky sw-sticky-green">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">semangat belajar</div>
+        </div>
+      </div>
+
+      <div class="sw-sticky sw-sticky-lined" style="margin-top:1.5rem">
+        <strong style="font-family:'Permanent Marker',cursive;display:block;margin-bottom:0.3rem">cita-cita:</strong>
+        <span style="font-family:'Caveat',cursive;font-size:1.1rem">"Menjadi psikolog profesional yang dapat memberikan kontribusi positif bagi kesehatan mental dan kesejahteraan masyarakat."</span>
+      </div>
+
+      <div style="margin-top:1.5rem">
+        <div
+          data-arc-text="psikolog profesional · masa depan ·"
+          data-arc-radius="110"
+          data-arc-size="14px"
+          data-arc-font="'Caveat', cursive"
+          data-arc-color="#4a4540"
+          style="filter:url(#sw-f1)">psikolog profesional · masa depan ·</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACADEMIC JOURNEY ───────────────────────────────────────── -->
+<section class="academic-section" id="perjalanan">
+  <div class="academic-inner">
+
+    <div class="academic-sticky">
+      <div class="sw-tape-strip" style="transform:rotate(1.5deg);margin-bottom:1rem">perjalanan akademik</div>
+      <h2 class="section-heading" style="font-size:3.5rem">academic journey</h2>
+      <p style="font-family:'Caveat',cursive;font-size:1.1rem;color:#5a5248;margin-top:0.8rem;line-height:1.6">
+        Dari SMA hingga bangku kuliah — setiap langkah membawa saya lebih dekat
+        pada pemahaman diri dan orang lain.
+      </p>
+
+      <!-- receipt summary -->
+      <div class="sw-receipt sw-shadow academic-receipt" style="margin-top:2rem">
+        <div class="sw-receipt-title">RIWAYAT AKADEMIK</div>
+        <hr class="sw-receipt-line">
+        <div class="receipt-step">
+          <span class="receipt-step-num">01</span>
+          <span class="receipt-step-name">SMA Negeri 2 Cianjur</span>
+          <span class="receipt-step-tag">SMA</span>
+        </div>
+        <div class="receipt-step">
+          <span class="receipt-step-num">02</span>
+          <span class="receipt-step-name">Psikologi UPI</span>
+          <span class="receipt-step-tag">2026 –</span>
+        </div>
+        <div class="receipt-step">
+          <span class="receipt-step-num">03</span>
+          <span class="receipt-step-name">Profesi Psikolog</span>
+          <span class="receipt-step-tag">kelak</span>
+        </div>
+        <hr class="sw-receipt-line">
+        <div class="sw-receipt-total">
+          <span>TUJUAN</span><span>psikolog ✦</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="academic-detail">
+        <div class="ad-step">01</div>
+        <div class="ad-title">SMA Negeri 2 Cianjur</div>
+        <p class="ad-text">Jenjang pendidikan menengah atas yang menjadi fondasi perjalanan akademik saya sebelum melanjutkan ke perguruan tinggi.</p>
+      </div>
+      <div class="academic-detail">
+        <div class="ad-step">02</div>
+        <div class="ad-title">PKKMB UPI</div>
+        <p class="ad-text">Mengikuti kegiatan Pengenalan Kehidupan Kampus bagi Mahasiswa Baru (PKKMB) Universitas Pendidikan Indonesia — langkah pertama mengenal kehidupan kampus UPI.</p>
+      </div>
+      <div class="academic-detail">
+        <div class="ad-step">03</div>
+        <div class="ad-title">Sekolah Kaderisasi &amp; MABIM</div>
+        <p class="ad-text">Mengikuti kegiatan Sekolah Kaderisasi mahasiswa serta Masa Bimbingan (MABIM) Program Studi Psikologi — membangun koneksi dan pemahaman lingkungan perkuliahan.</p>
+      </div>
+      <div class="academic-detail">
+        <div class="ad-step">04</div>
+        <div class="ad-title">Kegiatan Akademik</div>
+        <p class="ad-text">Aktif mengikuti berbagai diskusi kelompok, presentasi, dan kegiatan akademik selama perkuliahan. Mata kuliah yang paling menarik minat saya antara lain Psikologi Anak, Psikologi Sosial, dan Psikologi Dasar.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── AREAS OF INTEREST ──────────────────────────────────────── -->
+<section class="interest-section" id="minat">
+  <div class="interest-inner">
+    <div class="sw-tape-strip sw-tape-strip-pink" style="transform:rotate(-1deg);margin-bottom:0.8rem">bidang minat</div>
+    <h2 class="section-heading">areas of interest</h2>
+    <p class="section-sub">tiga bidang psikologi yang paling menarik perhatian saya</p>
+
+    <div class="interest-grid">
+
+      <div class="interest-index">
+        <div class="sw-index-card sw-shadow">
+          <div class="interest-washi sw-washi-pink sw-washi-stripes"></div>
+          <div class="interest-name" style="margin-top:1rem">Psikologi Klinis</div>
+          <p class="interest-desc">
+            Saya tertarik mempelajari kesehatan mental, permasalahan psikologis,
+            serta bagaimana seseorang dapat memahami dan mengatasi berbagai
+            kesulitan dalam kehidupannya.
+          </p>
+          <div style="margin-top:1.2rem">
+            <span class="sw-badge sw-color-pink">kesehatan mental</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="interest-index">
+        <div class="sw-index-card sw-shadow">
+          <div class="interest-washi sw-washi-yellow sw-washi-dots"></div>
+          <div class="interest-name" style="margin-top:1rem">Psikologi Sosial</div>
+          <p class="interest-desc">
+            Saya tertarik memahami bagaimana lingkungan, kelompok, dan interaksi
+            sosial dapat memengaruhi pikiran, perasaan, serta perilaku seseorang.
+          </p>
+          <div style="margin-top:1.2rem">
+            <span class="sw-badge sw-color-yellow">interaksi sosial</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="interest-index">
+        <div class="sw-index-card sw-shadow">
+          <div class="interest-washi sw-washi-blue"></div>
+          <div class="interest-name" style="margin-top:1rem">Psikologi Perkembangan</div>
+          <p class="interest-desc">
+            Saya ingin mempelajari bagaimana manusia mengalami perubahan dan
+            perkembangan dalam berbagai tahap kehidupan, mulai dari masa
+            kanak-kanak hingga dewasa.
+          </p>
+          <div style="margin-top:1.2rem">
+            <span class="sw-badge sw-color-blue">tahap kehidupan</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ─────────────────────────────────────────────────── -->
+<section class="skills-section" id="kemampuan">
+  <div class="skills-inner">
+    <div class="skills-header">
+      <div class="section-eyebrow">kemampuan saya</div>
+      <h2 class="section-heading">skills &amp; competencies</h2>
+      <p class="section-sub">kemampuan interpersonal · tools digital · kelebihan diri</p>
+    </div>
+
+    <div class="skills-grid">
+
+      <!-- Kolom 1: Kemampuan -->
+      <div>
+        <div class="sw-tape-strip sw-tape-strip-green" style="transform:rotate(-0.5deg);margin-bottom:1rem">kemampuan</div>
+        <div class="sw-index-card sw-shadow">
+          <div class="skill-col-title">Soft Skills</div>
+          <ul class="skill-list">
+            <li>Kemampuan Berbahasa Inggris</li>
+            <li>Komunikasi Interpersonal</li>
+            <li>Active Listening (Mendengarkan Aktif)</li>
+            <li>Kerja Sama dalam Tim</li>
+            <li>Kemampuan Mempelajari Hal Baru</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Kolom 2: Aplikasi & Tools -->
+      <div>
+        <div class="sw-tape-strip sw-tape-strip-blue" style="transform:rotate(0.5deg);margin-bottom:1rem">aplikasi &amp; tools</div>
+        <div class="sw-index-card sw-shadow">
+          <div class="skill-col-title">Digital Tools</div>
+          <ul class="skill-list">
+            <li>Microsoft Word</li>
+            <li>Microsoft PowerPoint</li>
+            <li>Google Docs</li>
+            <li>Google Slides</li>
+            <li>Canva</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Kolom 3: Kelebihan -->
+      <div>
+        <div class="sw-tape-strip sw-tape-strip-pink" style="transform:rotate(-0.8deg);margin-bottom:1rem">kelebihan diri</div>
+        <div class="sw-index-card sw-shadow">
+          <div class="skill-col-title">Kelebihan</div>
+          <ul class="skill-list">
+            <li>Kemampuan mendengarkan yang baik</li>
+            <li>Mudah mempelajari hal-hal baru</li>
+            <li>Rasa ingin tahu yang tinggi</li>
+            <li>Dapat memahami sudut pandang orang lain</li>
+            <li>Bertanggung jawab terhadap tugas</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────────────── -->
+<section class="contact-section" id="kontak">
+
+  <!-- corner stickers -->
+  <div style="position:absolute;top:5rem;left:2rem;pointer-events:none">
+    <div data-sticker="star" data-color="var(--sw-yellow)" data-size="40px" style="transform:rotate(-15deg)"></div>
+  </div>
+  <div style="position:absolute;top:5rem;right:2rem;pointer-events:none">
+    <div data-sticker="heart" data-color="var(--sw-pink)" data-size="32px" style="transform:rotate(10deg)"></div>
+  </div>
+  <div style="position:absolute;bottom:4rem;left:2rem;pointer-events:none">
+    <div data-sticker="sparkles" data-color="var(--sw-green)" data-size="44px" style="transform:rotate(8deg)"></div>
+  </div>
+  <div style="position:absolute;bottom:3rem;right:2rem;pointer-events:none">
+    <div data-sticker="burst" data-color="var(--sw-purple)" data-size="48px" style="transform:rotate(-12deg)"></div>
+  </div>
+
+  <div class="contact-inner">
+
+    <!-- starburst -->
+    <div class="contact-star">
+      <div class="sw-starburst sw-starburst-2xl sw-starburst-pink sw-wobble">
+        yuk<br>saling<br>kenal!
+      </div>
+    </div>
+
+    <!-- details -->
+    <div>
+      <div class="sw-tape-strip sw-tape-strip-blue" style="transform:rotate(-1deg);margin-bottom:0.8rem">hubungi saya</div>
+      <h2 class="contact-title">mari<br>berkenalan.</h2>
+      <p class="contact-sub">
+        Saya terbuka untuk berdiskusi, berbagi cerita, atau sekadar berkenalan.
+        Jangan ragu untuk menghubungi saya melalui media sosial di bawah ini.
+      </p>
+
+      <div class="social-links">
+        <!-- Kontak belum tersedia — tidak menampilkan tautan kosong -->
+        <span class="sw-badge sw-color-blue" style="font-size:1rem;padding:0.4rem 0.9rem;border:2px solid var(--page-ink);filter:url(#sw-f1)">
+          ✉ info kontak segera hadir
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-brand">
+    <span class="footer-brand-name">Najla Syazwani</span>
+    <p>Mahasiswa Psikologi UPI angkatan 2026, tertarik pada dunia pendidikan dan perkembangan manusia.</p>
+    <p style="margin-top:0.6rem;opacity:0.5;font-size:0.8rem">© 2026 Najla Syazwani</p>
+  </div>
+  <div>
+    <span class="footer-col-title">Site</span>
+    <ul class="footer-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#perjalanan">Academic</a></li>
+      <li><a href="#minat">Interests</a></li>
+      <li><a href="#kontak">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <span class="footer-col-title">Elsewhere</span>
+    <ul class="footer-links">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="scrawl.js"></script>
+<script src="icons.js"></script>
+<script>
+  // mobile nav toggle
+  document.getElementById('nav-toggle').addEventListener('click', function() {
+    document.body.classList.toggle('nav-open');
+  });
+  // tutup menu mobile setelah salah satu menu diklik
+  document.querySelectorAll('.site-nav a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () { document.body.classList.remove('nav-open'); });
+  });
+</script>
+</body>
+</html>
