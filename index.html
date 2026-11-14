@@ -227,6 +227,13 @@
       aspect-ratio: 3/4;
       background: linear-gradient(145deg, #ffd6e0 0%, #fff9c4 40%, #d6ecff 100%);
       display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hp .pp img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     /* top-right accent polaroid */
     .hp-accent {
@@ -243,6 +250,7 @@
       aspect-ratio: 1/1;
       background: linear-gradient(135deg, #d8f3d8 0%, #fff9c4 100%);
       display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
     }
     /* tape on polaroids */
     .pol-tape {
@@ -736,15 +744,12 @@
     <div class="hero-right">
       <div class="hero-polaroid-group">
 
-        <!-- main polaroid — no photo, just decorative fill -->
+        <!-- main polaroid -->
         <div class="hp hp-main">
           <div class="pol-tape pol-tape-tl"></div>
           <div class="pol-tape pol-tape-tr"></div>
           <div class="pp">
-            <div style="text-align:center">
-              <div data-sticker="flower" data-color="var(--sw-pink)" data-size="80px" style="margin:0 auto 8px"></div>
-              <div style="font-family:'Bangers',cursive;font-size:1.3rem;letter-spacing:0.04em">najla ✦</div>
-            </div>
+            <img src="1.jpeg" alt="Foto Najla Syazwani">
           </div>
           <div class="pol-label" style="font-family:'Caveat',cursive;font-size:0.95rem;font-weight:700;height:48px">
             Cianjur, Jawa Barat
@@ -754,7 +759,7 @@
         <!-- accent polaroid top-right -->
         <div class="hp hp-accent">
           <div class="pp">
-            <div data-sticker="star" data-color="var(--sw-yellow)" data-size="52px"></div>
+            <img src="2.jpeg" alt="Foto Kegiatan / Najla">
           </div>
           <div class="pol-label" style="font-family:'Caveat',cursive;font-size:0.85rem;font-weight:700;height:36px">
             psikologi UPI
